@@ -16,7 +16,7 @@ in {
 			core.editor = "vim";
 		};
 	};
-`	programs.ssh = {
+	programs.ssh = {
 		enable = true;
 		matchBlocks = {
 			"github.com" = {
