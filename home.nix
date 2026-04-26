@@ -16,6 +16,16 @@ in {
 			core.editor = "vim";
 		};
 	};
+`	programs.ssh = {
+		enable = true;
+		matchBlocks = {
+			"github.com" = {
+				hostname = "github.com";
+				identityFile = "~/.ssh/id_ed25519";
+				user = "git";
+			};
+		};
+	};
 	programs.bash = {
 		enable = true;
 		shellAliases = myAliases;
