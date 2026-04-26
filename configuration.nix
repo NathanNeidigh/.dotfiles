@@ -51,6 +51,7 @@
     firefox
     hyprland
     hyprpaper
+    kicad
   ];
 
 fonts.packages = with pkgs; [

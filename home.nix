@@ -7,6 +7,11 @@ in {
 	home.homeDirectory = "/home/neidna";
 	home.stateVersion = "25.11";
 	
+	#Packages
+	home.packages = with pkgs; [
+		starship
+	];
+
 	#Programs
 	programs.git = {
 		enable = true;
@@ -33,9 +38,15 @@ in {
 	programs.zsh = {
 		enable = true;
 		shellAliases = myAliases;
+		autosuggestion.enable = true;
+		syntaxHighlighting.enable = true;
+	};
+	programs.starship = {
+		enable = true;
 	};
 	home.file.".config/hypr/hyprland.conf".source = ./config/hypr/hyprland.conf;
 	home.file.".config/hypr/hyprpaper.conf".source = ./config/hypr/hyprpaper.conf;
+	home.file.".config/alacritty/alacritty.toml".source = ./config/alacritty/alacritty.toml;
 	
 	#Cursor
 	home.pointerCursor = {
