@@ -45,6 +45,7 @@
 
   environment.systemPackages = with pkgs; [
     vim 
+    neovim
     wget
     git
     alacritty
@@ -60,10 +61,18 @@ nerd-fonts.iosevka-term
 ];
 
 #Programs
-programs.zsh.enable = true;
-programs.git = {
-	enable = true;
-	config.init.defaultBranch = "main";
+programs = {
+	zsh.enable = true;
+	git = {
+		enable = true;
+		config.init.defaultBranch = "main";
+	};
+	neovim = {
+		enable = true;
+		defaultEditor = true;
+		viAlias = true;
+		vimAlias = true;
+	};
 };
 
 #Users

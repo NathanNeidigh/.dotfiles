@@ -13,40 +13,51 @@ in {
 	];
 
 	#Programs
-	programs.git = {
-		enable = true;
-		settings = {
-			user.email = "nathan.neidigh@outlook.com";
-			user.name = "Nathan Neidigh";
-			core.editor = "vim";
-		};
-	};
-	programs.ssh = {
-		enable = true;
-		matchBlocks = {
-			"github.com" = {
-				hostname = "github.com";
-				identityFile = "~/.ssh/id_ed25519";
-				user = "git";
+	programs = {
+		git = {
+			enable = true;
+			settings = {
+				user.email = "nathan.neidigh@outlook.com";
+				user.name = "Nathan Neidigh";
+				core.editor = "vim";
 			};
 		};
+		ssh = {
+			enable = true;
+			matchBlocks = {
+				"github.com" = {
+					hostname = "github.com";
+					identityFile = "~/.ssh/id_ed25519";
+					user = "git";
+				};
+			};
+		};
+		bash = {
+			enable = true;
+			shellAliases = myAliases;
+		};
+		zsh = {
+			enable = true;
+			shellAliases = myAliases;
+			autosuggestion.enable = true;
+			syntaxHighlighting.enable = true;
+		};
+		starship = {
+			enable = true;
+		};
+		neovim.enable = true;
 	};
-	programs.bash = {
-		enable = true;
-		shellAliases = myAliases;
+
+	#Configuration Files
+	xdg.configFile."alacritty".source = config/alacritty/alacritty.toml;
+	xdg.configFile."hypr" = {
+		source = config/hypr;		
+		recursive = true;
 	};
-	programs.zsh = {
-		enable = true;
-		shellAliases = myAliases;
-		autosuggestion.enable = true;
-		syntaxHighlighting.enable = true;
+	xdg.configFile."nvim" = {
+		source = config/nvim;
+		recursive = true;
 	};
-	programs.starship = {
-		enable = true;
-	};
-	home.file.".config/hypr/hyprland.conf".source = ./config/hypr/hyprland.conf;
-	home.file.".config/hypr/hyprpaper.conf".source = ./config/hypr/hyprpaper.conf;
-	home.file.".config/alacritty/alacritty.toml".source = ./config/alacritty/alacritty.toml;
 	
 	#Cursor
 	home.pointerCursor = {
