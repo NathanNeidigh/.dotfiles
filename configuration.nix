@@ -1,11 +1,6 @@
-{ config, pkgs, ... }:
+{ config, pkgs, specialArgs, ... }:
 
 {
-  imports =
-    [ 
-      ./hardware-configuration.nix
-    ];
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   boot.loader.systemd-boot.enable = true;
@@ -16,7 +11,7 @@
   hardware.nvidia.open = true;
   hardware.nvidia.modesetting.enable = true;
 
-  networking.hostName = "Natetop"; 
+  networking.hostName = "${specialArgs.hostname}"; 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;
 
@@ -72,6 +67,8 @@ programs = {
 		defaultEditor = true;
 		viAlias = true;
 		vimAlias = true;
+		withPython3 = false;
+		withRuby = false;
 	};
 };
 
@@ -79,7 +76,7 @@ programs = {
 environment.shells = with pkgs; [ zsh bash ];
 users.defaultUserShell = pkgs.zsh;
 
-  users.users.neidna = {
+  users.users."${specialArgs.username}" = {
     isNormalUser = true;
     description = "Nathan Neidigh";
     extraGroups = [ "networkmanager" "wheel" ];
@@ -92,5 +89,5 @@ users.defaultUserShell = pkgs.zsh;
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.11"; # Did you read the comment?
+  system.stateVersion = specialArgs.stateVersion; # Did you read the comment?
 }

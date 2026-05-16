@@ -1,11 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, specialArgs, ... }:
 
-let
-	myAliases = {};
-in {
-	home.username = "neidna";
-	home.homeDirectory = "/home/neidna";
-	home.stateVersion = "25.11";
+{
+	home.username = specialArgs.username;
+	home.homeDirectory = "/home/${specialArgs.username}";
+	home.stateVersion = specialArgs.stateVersion;
 	
 	#Packages
 	home.packages = with pkgs; [
@@ -17,9 +15,9 @@ in {
 		git = {
 			enable = true;
 			settings = {
-				user.email = "nathan.neidigh@outlook.com";
-				user.name = "Nathan Neidigh";
-				core.editor = "vim";
+				user.email = specialArgs.gitUseremail;
+				user.name = specialArgs.gitUsername;
+				core.editor = "nvim";
 			};
 		};
 		ssh = {
@@ -34,18 +32,20 @@ in {
 		};
 		bash = {
 			enable = true;
-			shellAliases = myAliases;
 		};
 		zsh = {
 			enable = true;
-			shellAliases = myAliases;
 			autosuggestion.enable = true;
 			syntaxHighlighting.enable = true;
 		};
 		starship = {
 			enable = true;
 		};
-		neovim.enable = true;
+		neovim = {
+			enable = true;
+			withPython3 = false;
+			withRuby = false;
+		};
 	};
 
 	#Configuration Files
@@ -54,10 +54,10 @@ in {
 		source = config/hypr;		
 		recursive = true;
 	};
-	xdg.configFile."nvim" = {
-		source = config/nvim;
-		recursive = true;
-	};
+	#xdg.configFile."nvim" = {
+	#	source = config/nvim;
+	#	recursive = true;
+	#};
 	
 	#Cursor
 	home.pointerCursor = {
