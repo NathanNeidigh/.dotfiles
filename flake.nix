@@ -49,6 +49,7 @@
 							useUserPackages = true;
 							users."${username}" = ./home.nix;
 							backupFileExtension = "backup";
+							extraSpecialArgs = { inherit stateVersion username gitUsername gitUseremail; };
 						};
 					}
 				 ];

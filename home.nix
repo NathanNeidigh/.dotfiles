@@ -1,9 +1,9 @@
-{ config, pkgs, specialArgs, ... }:
+{ config, pkgs, stateVersion, username, gitUsername, gitUseremail, ... }:
 
 {
-	home.username = specialArgs.username;
-	home.homeDirectory = "/home/${specialArgs.username}";
-	home.stateVersion = specialArgs.stateVersion;
+	home.username = username;
+	home.homeDirectory = "/home/${username}";
+	home.stateVersion = stateVersion;
 	
 	#Packages
 	home.packages = with pkgs; [
@@ -15,8 +15,8 @@
 		git = {
 			enable = true;
 			settings = {
-				user.email = specialArgs.gitUseremail;
-				user.name = specialArgs.gitUsername;
+				user.email = gitUseremail;
+				user.name = gitUsername;
 				core.editor = "nvim";
 			};
 		};
