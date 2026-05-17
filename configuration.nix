@@ -71,6 +71,7 @@
 	# The Rice Fields
     hyprland
     hyprpaper
+	hyprlauncher
     firefox
 
 	# Graphics and Media
@@ -81,6 +82,9 @@
     neovim
     alacritty
     kicad
+
+	# Fun Stuff!!!
+	steam
   ];
 
 fonts.packages = with pkgs; [
@@ -102,6 +106,12 @@ programs = {
 		vimAlias = true;
 		withPython3 = false;
 		withRuby = false;
+	};
+	steam = {
+		enable = true;
+		remotePlay.openFirewall = true;
+		dedicatedServer.openFirewall = true;
+		localNetworkGameTransfers.openFirewall = true;
 	};
 };
 
