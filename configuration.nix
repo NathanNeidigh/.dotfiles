@@ -6,9 +6,19 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  fileSystems."mnt/bigboi" = {
+	device = "/dev/disk/by-uuid/c3d2d210-112a-403b-b762-3c0be8ac0396";
+	fsType = "ext4";
+	options = [ 
+	"nofail" # Prevents system boot failure if drive is unplugged
+	"x-gvfs-show" # Makes the drive visible in file managers
+	];
+};
+
   hardware.graphics.enable = true;
+  hardware.graphics.enable32Bit = true;
   services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.open = true;
+  hardware.nvidia.open = false;
   hardware.nvidia.modesetting.enable = true;
 
   networking.hostName = "${specialArgs.hostname}"; 
@@ -112,7 +122,9 @@ programs = {
 		remotePlay.openFirewall = true;
 		dedicatedServer.openFirewall = true;
 		localNetworkGameTransfers.openFirewall = true;
+		gamescopeSession.enable = true;
 	};
+	gamemode.enable = true;
 };
 
 #Users
