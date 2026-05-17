@@ -54,10 +54,7 @@
 		source = config/hypr;		
 		recursive = true;
 	};
-	#xdg.configFile."nvim" = {
-	#	source = config/nvim;
-	#	recursive = true;
-	#};
+	xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/config/nvim";
 	
 	#Cursor
 	home.pointerCursor = {

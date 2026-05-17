@@ -16,6 +16,20 @@
   networking.networkmanager.enable = true;
 
   time.timeZone = "America/Los_Angeles";
+  
+  system.autoUpgrades = {
+	enable = true;
+	dates = "weekly";
+	flake = "/home/${specialArgs.username}/.dotfiles";
+  };
+
+  nix.gc = {
+	automatic = true;
+	dates = "daily";
+	options = "--delete-older-than 10d";
+  };
+
+  nix.settings.auto-optimize-store = true;
 
 #Services
   services.displayManager.ly = {
@@ -78,7 +92,8 @@ users.defaultUserShell = pkgs.zsh;
 
   users.users."${specialArgs.username}" = {
     isNormalUser = true;
-    description = "Nathan Neidigh";
+    name = "Nathan Neidigh";
+    initialHashedPassword = "${specialArgs.passwordHash}";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
   };
