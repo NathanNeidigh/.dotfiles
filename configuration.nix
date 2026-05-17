@@ -17,7 +17,7 @@
 
   time.timeZone = "America/Los_Angeles";
   
-  system.autoUpgrades = {
+  system.autoUpgrade = {
 	enable = true;
 	dates = "weekly";
 	flake = "/home/${specialArgs.username}/.dotfiles";
@@ -29,7 +29,7 @@
 	options = "--delete-older-than 10d";
   };
 
-  nix.settings.auto-optimize-store = true;
+  #nix.settings.auto-optimize-store = true;
 
 #Services
   services.displayManager.ly = {
@@ -92,7 +92,7 @@ users.defaultUserShell = pkgs.zsh;
 
   users.users."${specialArgs.username}" = {
     isNormalUser = true;
-    name = "Nathan Neidigh";
+    description = "Nathan Neidigh";
     initialHashedPassword = "${specialArgs.passwordHash}";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
