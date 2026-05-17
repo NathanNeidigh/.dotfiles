@@ -32,18 +32,29 @@
   #nix.settings.auto-optimize-store = true;
 
 #Services
-  services.displayManager.ly = {
-	enable = true;
-	settings = {
-		clock = "%c";
-		save = true;
-		load = true;
-		auth_fails = 3;
-		clear_password = true;
-		bigclock = "en";
-		inactivity_cmd = "/run/current-system/sw/bin/systemctl suspend";
-		inactivity_delay = 300;
-		sleep_cmd = "/run/current-system/sw/bin/systemctl suspend";
+  security.rtkit.enable = true; # Allows PipeWire to acquire realtime priority
+  services = {
+	  displayManager.ly = {
+		enable = true;
+		settings = {
+			clock = "%c";
+			save = true;
+			load = true;
+			auth_fails = 3;
+			clear_password = true;
+			bigclock = "en";
+			inactivity_cmd = "/run/current-system/sw/bin/systemctl suspend";
+			inactivity_delay = 300;
+			sleep_cmd = "/run/current-system/sw/bin/systemctl suspend";
+		};
+		pipewire = {
+			enable = true;
+			audio.enable = true;
+			pulse.enable = true;
+			jack.enable = true;
+			alsa.enable = true;
+			alsa.support32Bit = true;
+		};
 	};
 };
 
@@ -53,14 +64,22 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    vim 
-    neovim
+	# Utilities
     wget
     git
-    alacritty
-    firefox
+	
+	# The Rice Fields
     hyprland
     hyprpaper
+    firefox
+
+	# Graphics and Media
+	pipewire
+
+	# Development Tools
+    vim 
+    neovim
+    alacritty
     kicad
   ];
 
