@@ -22,6 +22,7 @@
 		};
 		ssh = {
 			enable = true;
+			enableDefaultConfig = false;
 			matchBlocks = {
 				"github.com" = {
 					hostname = "github.com";
@@ -76,5 +77,6 @@
 			package = pkgs.bibata-cursors;
 			name = "Bibata-Modern-Ice";
 		};
+		gtk4.theme = null;
 	};
 }
