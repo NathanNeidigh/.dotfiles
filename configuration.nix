@@ -47,14 +47,14 @@
 			inactivity_delay = 300;
 			sleep_cmd = "/run/current-system/sw/bin/systemctl suspend";
 		};
-		pipewire = {
-			enable = true;
-			audio.enable = true;
-			pulse.enable = true;
-			jack.enable = true;
-			alsa.enable = true;
-			alsa.support32Bit = true;
-		};
+	};
+	pipewire = {
+		enable = true;
+		audio.enable = true;
+		pulse.enable = true;
+		jack.enable = true;
+		alsa.enable = true;
+		alsa.support32Bit = true;
 	};
 };
 
