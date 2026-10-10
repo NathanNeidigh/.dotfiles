@@ -8,6 +8,9 @@
 	#Packages
 	home.packages = with pkgs; [
 		starship
+
+    #LazyVim packages
+    ripgrep
 	];
 
 	#Programs
