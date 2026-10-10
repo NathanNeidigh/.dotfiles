@@ -102,7 +102,7 @@
       virtualenv
     ]))
     lua
-    lua5_1 # Needed for luarocks LazyVim
+    luajit # lua JIT compiler for Neovim
 
 	# Fun Stuff!!!
 	steam
