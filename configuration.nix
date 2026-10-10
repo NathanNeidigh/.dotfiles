@@ -95,6 +95,13 @@
     alacritty
     kicad
 
+  # Programing Languages
+    gcc
+    (python3.withPackages (ps: with ps; [
+      pip 
+      virtualenv
+    ]))
+
 	# Fun Stuff!!!
 	steam
 	
@@ -117,6 +124,9 @@ fonts.packages = with pkgs; [
 
 #Programs
 programs = {
+  nix-ld = {
+      enable = true;
+    }
 	zsh.enable = true;
 	git = {
 		enable = true;

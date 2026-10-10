@@ -10,7 +10,15 @@
 		starship
 
     #LazyVim packages
+    fish
+    stylua
     ripgrep
+    ast-grep
+    luarocks
+    fd
+    lazygit
+    fzf
+    unzip
 	];
 
 	#Programs
