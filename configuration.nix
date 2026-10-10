@@ -100,7 +100,7 @@
 	
 	# Spell check and dictionaries
 	hunspell
-	hunspellDict.en_US-large
+	hunspellDicts.en_US-large
 	hyphen
   ];
 
