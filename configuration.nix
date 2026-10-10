@@ -101,6 +101,7 @@
       pip 
       virtualenv
     ]))
+    lua
 
 	# Fun Stuff!!!
 	steam
