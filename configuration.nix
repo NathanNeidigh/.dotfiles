@@ -76,18 +76,20 @@
   environment.systemPackages = with pkgs; [
 	# Utilities
     wget
-    git
 	
 	# The Rice Fields
     hyprland
     hyprpaper
 	hyprlauncher
+	vifm-full
     firefox
+	libreoffice
 
 	# Graphics and Media
 	pipewire
 
 	# Development Tools
+    git
     vim 
     neovim
     alacritty
@@ -95,11 +97,22 @@
 
 	# Fun Stuff!!!
 	steam
+	
+	# Spell check and dictionaries
+	hunspell
+	hunspellDict.en_US-large
+	hyphen
   ];
 
 fonts.packages = with pkgs; [
-nerd-fonts.iosevka
-nerd-fonts.iosevka-term
+	nerd-fonts.iosevka
+	nerd-fonts.iosevka-term
+
+	corefonts
+	vista-fonts
+	liberation_ttf
+	carlito
+	caladea
 ];
 
 #Programs
