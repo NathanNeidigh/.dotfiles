@@ -4,10 +4,17 @@
 	home.username = username;
 	home.homeDirectory = "/home/${username}";
 	home.stateVersion = stateVersion;
+
+  xdg.enable = true;
 	
 	#Packages
 	home.packages = with pkgs; [
 		starship
+
+    # Image Viewers
+    oculante
+    #gimp
+    #darktable
 
     #LazyVim packages
     fish
