@@ -102,7 +102,6 @@
       virtualenv
     ]))
     lua
-    luajit # lua JIT compiler for Neovim
 
 	# Fun Stuff!!!
 	steam
