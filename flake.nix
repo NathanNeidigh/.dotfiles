@@ -11,9 +11,13 @@
 			url = "github:nix-community/lanzaboote";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		antigravity-nix = {
+			url = "github:jacopone/antigravity-nix";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 	};
 
-	outputs = { self, nixpkgs, home-manager, lanzaboote, ... }:
+	outputs = { self, nixpkgs, home-manager, lanzaboote, antigravity-nix, ... }:
 	let
 		hostname = "Natetop";
 		system = "x86_64-linux";
@@ -43,6 +47,7 @@
 				modules = [ 
 					{
 						system.stateVersion = stateVersion; # DO NOT CHANGE THIS UNLESS YOU KNOW WHAT YOU ARE DOING.
+						nixpkgs.overlays = [ antigravity-nix.overlays.default ];
 					}
 					./hardware-configuration.nix
 					./configuration.nix

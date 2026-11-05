@@ -114,6 +114,15 @@
     neovim
     alacritty
     kicad
+    (writeShellScriptBin "antigravity" ''
+      exec ${google-antigravity-ide}/bin/antigravity-ide --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
+    '')
+    (makeDesktopItem {
+      name = "antigravity";
+      desktopName = "Antigravity";
+      exec = "antigravity %U";
+      icon = "${google-antigravity-ide}/share/pixmaps/antigravity-ide.png";
+    })
 
   # Programing Languages
     gcc
