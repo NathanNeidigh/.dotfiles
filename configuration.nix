@@ -1,10 +1,23 @@
-{ config, pkgs, specialArgs, ... }:
+{ config, lib, pkgs, specialArgs, ... }:
 
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  boot.loader.systemd-boot.enable = true;
+  # Bootloader & Secure Boot (Lanzaboote + systemd-boot for Windows 11 dual-boot)
+  boot.loader.systemd-boot.enable = lib.mkForce false;
+  boot.loader.systemd-boot.editor = false;
+  boot.loader.timeout = 10;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/var/lib/sbctl";
+    autoGenerateKeys.enable = true;
+    autoEnrollKeys = {
+      enable = true;
+      includeMicrosoftKeys = true;
+    };
+  };
 
   fileSystems."mnt/bigboi" = {
 	device = "/dev/disk/by-uuid/c3d2d210-112a-403b-b762-3c0be8ac0396";
@@ -26,6 +39,7 @@
   networking.networkmanager.enable = true;
 
   time.timeZone = "America/Los_Angeles";
+  time.hardwareClockInLocalTime = true; # Prevent clock drift when dual-booting with Windows 11
   
   system.autoUpgrade = {
 	enable = true;
@@ -76,6 +90,12 @@
   environment.systemPackages = with pkgs; [
 	# Utilities
     wget
+    sbctl
+    gptfdisk
+    parted
+    gparted
+    efibootmgr
+    ntfs3g
 	
 	# The Rice Fields
     hyprland
